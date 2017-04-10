@@ -17,7 +17,7 @@ function MatcherFactory() {
 		if (type == 'levenshtein') {
 			matcher = levenshteinMatcher	
 		}
-
+		
 		return matcher
 	}
 }

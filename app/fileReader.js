@@ -16,7 +16,6 @@ const fileReader = function(){
 		readLinesFromFile: function(filename) {
 			return new Promise((resolve, reject) => {
 				let rl = createReadLine(filename)
-
 				rl.on('line', (line) => {
 					lines.push(line)
 				}).on('close', () => {
