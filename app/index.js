@@ -1,15 +1,16 @@
 'use strict'
 
 const fileReader = require('./fileReader')
-const exactMatcher = require('./matcher/exactMatcher')
-const containMatcher = require('./matcher/containMatcher')
-const levenshteinMatcher = require('./matcher/levenshteinMatcher')
+const MatcherFactory = require('./matcher/factory')
+
+let factory = new MatcherFactory()
+let matcher = factory.createMatcher('levenshtein')
 
 Promise.all([
 	fileReader().readLinesFromFile('res/input.txt'),
 	fileReader().readLinesFromFile('res/patterns.txt'),
 ]).then((arrays) => {
-	let lines = levenshteinMatcher.matchLines(arrays[0], arrays[1])
+	let lines = matcher.matchLines(arrays[0], arrays[1])
 	displayMatchedLines(lines)
 }).catch((error) => {
 	// handle error later
