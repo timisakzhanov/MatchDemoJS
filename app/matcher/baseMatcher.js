@@ -1,5 +1,7 @@
 'use strict'
 
+const levenshtein = require('fast-levenshtein')
+
 const baseMatcher = {
 
 	matchLines: function(linesArr, patternArr) {
@@ -27,4 +29,9 @@ containMatcher.comparator = function(line, pattern) {
 	return line.includes(pattern)
 }
 
-module.exports = containMatcher
+let levenshteinMatcher = Object.create(baseMatcher)
+levenshteinMatcher.comparator = function(line, pattern) {
+	return levenshtein.get(line, pattern) <= 1		
+}
+
+module.exports = levenshteinMatcher
