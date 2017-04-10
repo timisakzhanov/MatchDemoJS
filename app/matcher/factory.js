@@ -6,7 +6,7 @@ const levenshteinMatcher = require('./levenshteinMatcher')
 
 function MatcherFactory() {
 	this.createMatcher = function(type) {
-		let matcher
+		let matcher = null
 
 		if (type == 'exact') {
 			matcher = exactMatcher	
@@ -17,7 +17,9 @@ function MatcherFactory() {
 		if (type == 'levenshtein') {
 			matcher = levenshteinMatcher	
 		}
-		
+		if (matcher == null) {
+			throw new Error('Wrong matcher type')
+		}
 		return matcher
 	}
 }

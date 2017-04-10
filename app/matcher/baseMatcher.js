@@ -3,7 +3,8 @@
 const baseMatcher = {
 
 	matchLines: function(linesArr, patternArr) {
-		let matchedLines = []
+
+	let matchedLines = []
 
 		patternArr.forEach((pattern) => {
 			linesArr
