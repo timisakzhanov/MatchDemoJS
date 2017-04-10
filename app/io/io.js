@@ -1,5 +1,5 @@
 const readline = require('readline');
-
+const fileReader = require('./fileReader')
 const rl = readline.createInterface({
   input: process.stdin,
 	output: process.stdout
@@ -14,6 +14,10 @@ const io = {
 		return new Promise((resolve, reject) => {
 			rl.question(message, (answer) => resolve(answer))	
 		})
+	},
+
+	readFile: function(filename) {
+		return fileReader().readLinesFromFile(filename)	
 	},
 
 	closeIO: function() {
