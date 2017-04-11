@@ -3,13 +3,9 @@
 const io = require('./io/io')
 const MatcherFactory = require('./matcher/factory')
 
-function displayMatchedLines(linesArr) {
+function displayMatchedLines(linesArr, io) {
 	io.writeMessage("Results: ")
-	linesArr.forEach((line) => {
-		io.writeMessage(line)
-	})
-
-	io.closeIO()
+	linesArr.forEach(line => io.writeMessage(line))
 }
 
 const dataInput = {
@@ -25,17 +21,10 @@ Promise.all([
 		dataInput.lines = results[0]
 		dataInput.patterns = results[1]
 	})
-	.catch((reason) => io.writeMessage(reason))
 	.then(() => io.promptInput('Enter matcher type (exact, contain, levenshtein): '))
-	.then((answer) => {
-		try {
-			let results = (new MatcherFactory()).createMatcher(answer)
-				.matchLines(dataInput.lines, dataInput.patterns)
-			displayMatchedLines(results)
-		} catch(e) {
-			io.writeMessage('Wrong matcher type')
-			io.closeIO()
-		}
-	})
-
+	.then(answer => (new MatcherFactory()).createMatcher(answer)
+																				.matchLines(dataInput.lines, dataInput.patterns))
+	.then(results => displayMatchedLines(results, io))
+	.catch((reason) => io.writeMessage(reason))
+	.then(() => io.closeIO())
 
