@@ -25,7 +25,7 @@ Promise.all([
 		dataInput.lines = results[0]
 		dataInput.patterns = results[1]
 	})
-	.catch((reason) => io.writeMessage('wrong file name'))
+	.catch((reason) => io.writeMessage(reason))
 	.then(() => io.promptInput('Enter matcher type (exact, contain, levenshtein): '))
 	.then((answer) => {
 		try {
