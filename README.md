@@ -4,15 +4,18 @@ Application reads text lines from file ```res/input.txt``` and reads pattern lin
 Then it asks user to choose method for matching lines with pattern lines. User may select one of the below options:
 - exact - will select only lines that have exact matching with any of the pattern lines
 - contain - will select only lines that contain any of the pattern lines
-- levenstein - will select only lines that contain a match with edit distance <= 1
-At the end, application displays lines that match to the given pattern lines.
+- levenstein - will select only lines that contain a match with edit distance <= 1.
+At the end, application will display lines that match to the given pattern lines.
 
 
 
 # Realization
 
-In this applications I used abstract factory pattern to separate different realizations and to make code extandable.
-```baseMatcher``` - object that perform lines matching. ```containMatcher```, ```exactMatcher``` and ```levenshteinMatcher``` - extand ```baseMatcher``` and declare comparaton functionality.
+Within this application I used abstract factory pattern in order to separate different realizations and make code extandable.
+```baseMatcher``` - object that performs lines matching.
+
+```containMatcher```, ```exactMatcher``` and ```levenshteinMatcher``` - extand ```baseMatcher``` and declare comparaton functionality.
+
 ```MatcherFactory``` - constructor function that creates required matcher.
 
 To communicate with user I have created ```io``` object, that uses console for reading user input and writing messages. It also reads text from files.
