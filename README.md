@@ -14,11 +14,11 @@ At the end, application will display lines that match to the given pattern lines
 Within this application I used abstract factory pattern in order to separate different realizations and make code extandable.
 ```baseMatcher``` - object that performs lines matching.
 
-```containMatcher```, ```exactMatcher``` and ```levenshteinMatcher``` - extand ```baseMatcher``` and declare comparaton functionality.
+```containMatcher```, ```exactMatcher``` and ```levenshteinMatcher``` - are the objects that extand ```baseMatcher``` and declare compare functionality.
 
 ```MatcherFactory``` - constructor function that creates required matcher.
 
-To communicate with user I have created ```io``` object, that uses console for reading user input and writing messages. It also reads text from files.
+In order to communicate with user I have created ```io``` object, that uses console for reading user input and writing messages. It also reads text from files.
 
 # Tools
 - node.js
@@ -26,7 +26,7 @@ To communicate with user I have created ```io``` object, that uses console for r
   
 # How to run
 
-In terminal:
+Within terminal:
 - navigare to the root directory
 - install node
 - install required dependencies (npm install)
